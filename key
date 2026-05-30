@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Badshah Key System</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+            padding-top: 100px;
+        }
+        .box {
+            background: #222;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>TODAY KEY</h2>
+    <h1 id="key">Loading...</h1>
+    <button onclick="copyKey()">Copy Key</button>
+</div>
+
+<script>
+    // 🔥 DAILY KEY GENERATOR (same as Roblox logic idea)
+    function generateKey() {
+        let date = new Date();
+        let d = String(date.getDate()).padStart(2, '0');
+        let m = String(date.getMonth()+1).padStart(2, '0');
+        let y = date.getFullYear();
+
+        let raw = d + m + y;
+
+        let convert = {
+            "0":"X","1":"Z","2":"A","3":"G","4":"W",
+            "5":"Q","6":"M","7":"B","8":"O","9":"V"
+        };
+
+        let result = "";
+
+        for(let i=0;i<raw.length;i++){
+            result += convert[raw[i]];
+        }
+
+        return "Badshah-" + result;
+    }
+
+    let todayKey = generateKey();
+    document.getElementById("key").innerText = todayKey;
+
+    function copyKey(){
+        navigator.clipboard.writeText(todayKey);
+        alert("Key Copied!");
+    }
+</script>
+
+</body>
+</html>
